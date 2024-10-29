@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 import pandas as pd
-from scipy.spatial.distance import chebyshev
+from scipy.spatial.distance import cdist
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances, manhattan_distances
 
 
@@ -18,7 +18,7 @@ def calculate_distance_matrix(data, measure):
     elif measure == "manhattan":
         distance_matrix = manhattan_distances(data)
     elif measure == "chebyshev":
-        distance_matrix = chebyshev(data)
+        distance_matrix = cdist(data, data, metric='chebyshev')
     else:
         raise ValueError("Invalid measure")
 
